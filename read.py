@@ -12,6 +12,36 @@ def date(pm):
 	s += pm["Year"]
 	return s
 
+def check_date_multi(pm,po):
+	if date(pm) == po["Est1"]:
+		return 1
+	elif date(pm) == po["Est2"]:
+		return 2
+	elif date(pm) == po["Est3"]:
+		return 3
+	elif date(pm) == po["Est4"]:
+		return 4
+	elif date(pm) == po["Est5"]:
+		return 5
+	elif date(pm) == po["Est6"]:
+		return 6
+	elif date(pm) == po["Est7"]:
+		return 7
+	elif date(pm) == po["Est8"]:
+		return 8
+	elif date(pm) == po["NameChangeDate1"]:
+		return -1
+	elif date(pm) == po["NameChangeDate2"]:
+                return -2
+	elif date(pm) == po["NameChangeDate3"]:
+                return -3
+	elif date(pm) == po["NameChangeDate4"]:
+                return -4
+	elif date(pm) == po["NameChangeDate5"]:
+                return -5
+	else:
+		return 0
+
 def check_date(pm, po):
 	if date(pm) == po["Est1"] or date(pm) == po["Est2"] or date(pm) == po["Est3"] or date(pm) == po["Est4"] or date(pm) == po["Est5"] or date(pm) == po["Est6"] or date(pm) == po["Est7"] or date(pm) == po["Est8"]:
 		return 1
@@ -38,26 +68,24 @@ if __name__== "__main__":
 			PO.append(row)
 		for row in pm_reader:
 			PM.append(row)
-
 	for pm in PM:
-		pm["NewApp"] = -1
-		if pm["Last"] == "Pendleton" and pm["First"] == "Geo. C.":
-			print pm["Last"],
-			print pm["First"]
-			i = 0
-			for po in PO:
-				if check_name(pm, po) == 1:
-					print "found"
-					print check_date(pm, po)
+		pm["NewApp"] = -50;
 
 	for pm in PM:
 		for po in PO:
 			if check_name(pm, po) == 1:
-				pm["NewApp"] = check_date(pm, po)
+				pm["NewApp"] = check_date_multi(pm, po)
 				break
 
+	print i
+	print j	
+	fieldnames = PM[0].keys()
+
+	new_po_path = "data/newPostmastersmulti.csv"
+	f_obj3 = open(new_po_path, "wb")
+	pm_writer = csv.DictWriter(f_obj3, delimiter=',',fieldnames=fieldnames);
+	f = dict(zip(fieldnames,fieldnames))
+	pm_writer.writerow(f)
 	for pm in PM:
-		if pm["NewApp"] == -1:
-			print pm["First"],
-			print ' ',
-			print pm["Last"]
+		pm_writer.writerow(pm)
+	f_obj3.close();
