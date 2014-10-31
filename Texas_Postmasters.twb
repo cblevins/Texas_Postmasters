@@ -1,0 +1,702 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<workbook source-platform='mac' version='8.3' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <!-- build 8200.14.0819.2015                                -->
+  <preferences>
+  </preferences>
+  <datasources>
+    <datasource caption='postmasters_gender' inline='true' name='textscan.41933.462000463000' version='8.3'>
+      <connection class='textscan' directory='/Users/Cameron Blevins/Dropbox/Dissertation/Dissertation Analysis/Patronage/Texas_Postmasters/data' filename='postmasters_gender.csv'>
+        <relation name='postmasters_gender#csv' table='[postmasters_gender#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_US' separator=','>
+            <column datatype='integer' name='F1' ordinal='0' />
+            <column datatype='string' name='Last' ordinal='1' />
+            <column datatype='string' name='First' ordinal='2' />
+            <column datatype='string' name='Office' ordinal='3' />
+            <column datatype='string' name='County' ordinal='4' />
+            <column datatype='integer' name='Year' ordinal='5' />
+            <column datatype='integer' name='Month' ordinal='6' />
+            <column datatype='integer' name='Day' ordinal='7' />
+            <column datatype='string' name='CleanedFirst' ordinal='8' />
+            <column datatype='string' name='Gender' ordinal='9' />
+            <column datatype='string' name='RefineGender' ordinal='10' />
+          </columns>
+        </relation>
+        <metadata-records>
+          <metadata-record class='column'>
+            <remote-name>F1</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[F1]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>F1</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Last</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Last]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Last</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>First</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[First]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>First</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Office</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Office]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Office</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>County</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[County]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>County</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Year]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Year</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Month</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Month]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Month</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Day</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Day]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Day</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;sint64&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>CleanedFirst</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[CleanedFirst]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>CleanedFirst</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Gender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Gender]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>Gender</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>RefineGender</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[RefineGender]</local-name>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias>RefineGender</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RUS' />
+            <attributes>
+              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
+              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
+              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='capability'>
+            <remote-name></remote-name>
+            <remote-type>0</remote-type>
+            <parent-name>[postmasters_gender#csv]</parent-name>
+            <remote-alias></remote-alias>
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column caption='Cleaned First' datatype='string' name='[CleanedFirst]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='string' name='[County]' role='dimension' semantic-role='[County].[Name]' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Day]' role='dimension' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Decades]' role='dimension' type='ordinal'>
+        <calculation class='categorical-bin' column='[Year]'>
+          <bin value='1846'>
+            <value>1846</value>
+            <value>1847</value>
+            <value>1848</value>
+            <value>1849</value>
+          </bin>
+          <bin value='1850'>
+            <value>1850</value>
+            <value>1851</value>
+            <value>1852</value>
+            <value>1853</value>
+            <value>1854</value>
+            <value>1855</value>
+            <value>1856</value>
+            <value>1857</value>
+            <value>1858</value>
+            <value>1859</value>
+          </bin>
+          <bin value='1860'>
+            <value>1860</value>
+            <value>1861</value>
+            <value>1862</value>
+            <value>1863</value>
+            <value>1864</value>
+            <value>1865</value>
+            <value>1866</value>
+            <value>1867</value>
+            <value>1868</value>
+            <value>1869</value>
+          </bin>
+          <bin value='1870'>
+            <value>1870</value>
+            <value>1871</value>
+            <value>1872</value>
+            <value>1873</value>
+            <value>1874</value>
+            <value>1875</value>
+            <value>1876</value>
+            <value>1877</value>
+            <value>1878</value>
+            <value>1879</value>
+          </bin>
+          <bin value='1880'>
+            <value>1880</value>
+            <value>1881</value>
+            <value>1882</value>
+            <value>1883</value>
+            <value>1884</value>
+            <value>1885</value>
+            <value>1886</value>
+            <value>1887</value>
+            <value>1888</value>
+            <value>1889</value>
+          </bin>
+          <bin value='1890'>
+            <value>1890</value>
+            <value>1891</value>
+            <value>1892</value>
+            <value>1893</value>
+            <value>1894</value>
+            <value>1895</value>
+            <value>1896</value>
+            <value>1897</value>
+            <value>1898</value>
+            <value>1899</value>
+          </bin>
+          <bin value='1900'>
+            <value>1900</value>
+            <value>1901</value>
+            <value>1902</value>
+            <value>1903</value>
+            <value>1904</value>
+            <value>1905</value>
+            <value>1906</value>
+            <value>1907</value>
+            <value>1908</value>
+            <value>1909</value>
+          </bin>
+          <bin value='1910'>
+            <value>1910</value>
+            <value>1911</value>
+            <value>1912</value>
+            <value>1913</value>
+            <value>1914</value>
+            <value>1915</value>
+            <value>1916</value>
+            <value>1917</value>
+            <value>1918</value>
+            <value>1919</value>
+          </bin>
+          <bin value='1920'>
+            <value>1920</value>
+            <value>1921</value>
+            <value>1922</value>
+            <value>1923</value>
+            <value>1924</value>
+            <value>1925</value>
+            <value>1926</value>
+            <value>1927</value>
+            <value>1928</value>
+            <value>1929</value>
+          </bin>
+          <bin value='1930'>
+            <value>1930</value>
+            <value>1931</value>
+            <value>1932</value>
+          </bin>
+        </calculation>
+        <aliases>
+          <alias key='1846' value='1840s' />
+          <alias key='1850' value='1850s' />
+          <alias key='1860' value='1860s' />
+          <alias key='1870' value='1870s' />
+          <alias key='1880' value='1880s' />
+          <alias key='1890' value='1890s' />
+          <alias key='1900' value='1900s' />
+          <alias key='1910' value='1910s' />
+          <alias key='1920' value='1920s' />
+          <alias key='1930' value='1930s' />
+        </aliases>
+      </column>
+      <column datatype='integer' name='[Month]' role='dimension' type='quantitative'>
+      </column>
+      <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+        <calculation class='tableau' formula='1' />
+      </column>
+      <column caption='Refine Gender' datatype='string' name='[RefineGender]' role='dimension' type='nominal'>
+      </column>
+      <column datatype='integer' name='[Year]' role='dimension' type='quantitative'>
+      </column>
+      <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;United States&quot;' />
+      </semantic-values>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='postmasters_gender' name='textscan.41933.462000463000' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.41933.462000463000'>
+            <column datatype='integer' name='[Decades]' role='dimension' type='ordinal'>
+              <calculation class='categorical-bin' column='[Year]'>
+                <bin value='1846'>
+                  <value>1846</value>
+                  <value>1847</value>
+                  <value>1848</value>
+                  <value>1849</value>
+                </bin>
+                <bin value='1850'>
+                  <value>1850</value>
+                  <value>1851</value>
+                  <value>1852</value>
+                  <value>1853</value>
+                  <value>1854</value>
+                  <value>1855</value>
+                  <value>1856</value>
+                  <value>1857</value>
+                  <value>1858</value>
+                  <value>1859</value>
+                </bin>
+                <bin value='1860'>
+                  <value>1860</value>
+                  <value>1861</value>
+                  <value>1862</value>
+                  <value>1863</value>
+                  <value>1864</value>
+                  <value>1865</value>
+                  <value>1866</value>
+                  <value>1867</value>
+                  <value>1868</value>
+                  <value>1869</value>
+                </bin>
+                <bin value='1870'>
+                  <value>1870</value>
+                  <value>1871</value>
+                  <value>1872</value>
+                  <value>1873</value>
+                  <value>1874</value>
+                  <value>1875</value>
+                  <value>1876</value>
+                  <value>1877</value>
+                  <value>1878</value>
+                  <value>1879</value>
+                </bin>
+                <bin value='1880'>
+                  <value>1880</value>
+                  <value>1881</value>
+                  <value>1882</value>
+                  <value>1883</value>
+                  <value>1884</value>
+                  <value>1885</value>
+                  <value>1886</value>
+                  <value>1887</value>
+                  <value>1888</value>
+                  <value>1889</value>
+                </bin>
+                <bin value='1890'>
+                  <value>1890</value>
+                  <value>1891</value>
+                  <value>1892</value>
+                  <value>1893</value>
+                  <value>1894</value>
+                  <value>1895</value>
+                  <value>1896</value>
+                  <value>1897</value>
+                  <value>1898</value>
+                  <value>1899</value>
+                </bin>
+                <bin value='1900'>
+                  <value>1900</value>
+                  <value>1901</value>
+                  <value>1902</value>
+                  <value>1903</value>
+                  <value>1904</value>
+                  <value>1905</value>
+                  <value>1906</value>
+                  <value>1907</value>
+                  <value>1908</value>
+                  <value>1909</value>
+                </bin>
+                <bin value='1910'>
+                  <value>1910</value>
+                  <value>1911</value>
+                  <value>1912</value>
+                  <value>1913</value>
+                  <value>1914</value>
+                  <value>1915</value>
+                  <value>1916</value>
+                  <value>1917</value>
+                  <value>1918</value>
+                  <value>1919</value>
+                </bin>
+                <bin value='1920'>
+                  <value>1920</value>
+                  <value>1921</value>
+                  <value>1922</value>
+                  <value>1923</value>
+                  <value>1924</value>
+                  <value>1925</value>
+                  <value>1926</value>
+                  <value>1927</value>
+                  <value>1928</value>
+                  <value>1929</value>
+                </bin>
+                <bin value='1930'>
+                  <value>1930</value>
+                  <value>1931</value>
+                  <value>1932</value>
+                </bin>
+              </calculation>
+              <aliases>
+                <alias key='1846' value='1840s' />
+                <alias key='1850' value='1850s' />
+                <alias key='1860' value='1860s' />
+                <alias key='1870' value='1870s' />
+                <alias key='1880' value='1880s' />
+                <alias key='1890' value='1890s' />
+                <alias key='1900' value='1900s' />
+                <alias key='1910' value='1910s' />
+                <alias key='1920' value='1920s' />
+                <alias key='1930' value='1930s' />
+              </aliases>
+            </column>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column caption='Refine Gender' datatype='string' name='[RefineGender]' role='dimension' type='nominal'>
+            </column>
+            <column datatype='integer' name='[Year]' role='dimension' type='quantitative'>
+            </column>
+            <column-instance column='[RefineGender]' derivation='None' name='[none:RefineGender:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Year]' derivation='None' name='[none:Year:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[pcto:sum:Number of Records:qk:2]' pivot='key' type='quantitative'>
+              <table-calc ordering-type='CellInPane' type='PctTotal' />
+            </column-instance>
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[textscan.41933.462000463000].[none:Year:qk]' included-values='in-range'>
+            <min>1800</min>
+            <max>1932</max>
+          </filter>
+          <slices>
+            <column>[textscan.41933.462000463000].[none:Year:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Bar' />
+            <encodings>
+              <color column='[textscan.41933.462000463000].[none:RefineGender:nk]' />
+              <lod column='[textscan.41933.462000463000].[sum:Number of Records:qk]' />
+            </encodings>
+          </pane>
+        </panes>
+        <rows>[textscan.41933.462000463000].[pcto:sum:Number of Records:qk:2]</rows>
+        <cols>[textscan.41933.462000463000].[Decades]</cols>
+      </table>
+    </worksheet>
+  </worksheets>
+  <windows>
+    <window class='schema' source-height='-1' />
+    <window auto-hidden='0' class='worksheet' maximized='1' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+            <card pane-specification-id='0' param='[textscan.41933.462000463000].[none:RefineGender:nk]' type='color' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.41933.462000463000].[Decades]</field>
+          <field>[textscan.41933.462000463000].[none:RefineGender:nk]</field>
+          <field>[textscan.41933.462000463000].[none:Year:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      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
+    </thumbnail>
+  </thumbnails>
+</workbook>
