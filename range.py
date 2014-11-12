@@ -12,8 +12,10 @@ if __name__ == "__main__":
         toRemove = []
         #remove postmasters who were appointed before 1867 or after 1902
         for pm in PM:
-                if int(pm["Year"]) < 1867 or int(pm["Year"]) > 1902:
+                if int(pm["Year"]) < 1867 or ((int(pm["Year"]) == 1867) and (int(pm["Month"]) < 7)):
                         toRemove.append(pm)
+		elif int(pm["Year"]) > 1902 or ((int(pm["Year"]) == 1902) and (int(pm["Month"]) > 6)):
+			toRemove.append(pm)
         for pm in toRemove:
                 PM.remove(pm)
 
