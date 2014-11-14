@@ -23,11 +23,10 @@ if __name__== "__main__":
 			CountyNames.append(pm['County'])
 			CountyAll = {}
 			CountyAll['County'] = pm['County']
-			CountyAll['Est'] = '-'
 			CountyAll['Year'] = '-'
 			CountyAll['EstNum'] = 0
 			CountyAll['ChangeNum'] = 0
-			if pm['NewApp'] == 0:
+			if int(pm['NewApp']) == 0:
 				CountyAll['ChangeNum'] = CountyAll['ChangeNum'] + 1
 			else:
 				CountyAll['EstNum'] = CountyAll['EstNum'] + 1
@@ -38,7 +37,7 @@ if __name__== "__main__":
 			CountyAll['Year'] = pm['Year']
 			CountyAll['EstNum'] = 0
                         CountyAll['ChangeNum'] = 0
-                        if pm['NewApp'] == 0:
+                        if int(pm['NewApp']) == 0:
                                 CountyAll['ChangeNum'] = CountyAll['ChangeNum'] + 1
                         else:
                                 CountyAll['EstNum'] = CountyAll['EstNum'] + 1
@@ -49,7 +48,7 @@ if __name__== "__main__":
 			for county in Counties:
 				if county['County'] == pm['County']:
 					if county['Year'] == pm['Year'] or county['Year'] == '-':
-						if pm['NewApp'] == 0:
+						if int(pm['NewApp']) == 0:
 							county['ChangeNum'] = county['ChangeNum'] + 1
 						else:
 							county['EstNum'] = county['EstNum'] + 1
@@ -60,14 +59,14 @@ if __name__== "__main__":
                 		County['Year'] = pm['Year']
 				County['EstNum'] = 0
 				County['ChangeNum'] = 0
-				if pm['NewApp'] == 0:
+				if int(pm['NewApp']) == 0:
 					County['ChangeNum'] = County['ChangeNum'] + 1
 				else:
 					County['EstNum'] = County['EstNum'] + 1 
                 		Counties.append(County)
 	
 	fieldnames = Counties[0].keys()		
-	new_path = 'data/Countiesnew.csv'
+	new_path = 'data/Geography/Countiesnew.csv'
 	f_obj2 = open(new_path, 'wb')
 	writer = csv.DictWriter(f_obj2, delimiter=',',fieldnames=fieldnames)
 	f = dict(zip(fieldnames,fieldnames))
