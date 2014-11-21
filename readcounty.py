@@ -1,76 +1,61 @@
 import csv
+from utils import *
 
 def nameyear(pm):
-	s = pm['County'] + pm['Year']
+	return pm["County"] + pm["Year"]
 
+def newCounty(pm, withYear):
+	newCounty = {}
+	#set county name
+	newCounty["Name"] = pm["County"]
+	#set establishment and changeover numbers
+	newCounty["EstNum"] = 0
+	newCounty["ChangeNum"] = 0
+	if isChangeover(pm):
+		newCounty["ChangeNum"] = 1
+	else:
+		newCounty["EstNum"] = 1
+	#set year
+	if withYear == 1:
+		newCounty["Year"] = pm["Year"]
+	else:
+		newCounty["Year"] = "-"
+	return newCounty
+
+def increment(Counties, pm):
+	for County in Counties:
+		if (pm["County"] == County["Name"]) and (County["Year"] in [pm["Year"],"-"]):
+			if isChangeover(pm):
+				County["ChangeNum"] = County["ChangeNum"] + 1
+			else:
+				County["EstNum"] = County["EstNum"] + 1
+	return Counties
 
 print(__name__)
 if __name__== "__main__":
-	pm_path = "data/newPostmastersmulti.csv"
-	f_obj1 = open(pm_path, "rU")
-	pm_reader = csv.DictReader(f_obj1);
-
-	PM = []
+	PM = getLinesCSV("data/postmasters.csv")
 	Counties = []
 
-	for row in pm_reader:
-		PM.append(row)
+	CountyNames = set()
+	CountyNameYears = set()
 
-	CountyNames = []
-
+	#cycle through postmasters
 	for pm in PM:
-		if pm['County'] not in CountyNames:
-			CountyNames.append(pm['County'])
-			CountyAll = {}
-			CountyAll['County'] = pm['County']
-			CountyAll['Year'] = '-'
-			CountyAll['EstNum'] = 0
-			CountyAll['ChangeNum'] = 0
-			if int(pm['NewApp']) == 0:
-				CountyAll['ChangeNum'] = CountyAll['ChangeNum'] + 1
-			else:
-				CountyAll['EstNum'] = CountyAll['EstNum'] + 1
-			Counties.append(CountyAll)
-
-			CountyAll = {}
-			CountyAll['County'] = pm['County']
-			CountyAll['Year'] = pm['Year']
-			CountyAll['EstNum'] = 0
-                        CountyAll['ChangeNum'] = 0
-                        if int(pm['NewApp']) == 0:
-                                CountyAll['ChangeNum'] = CountyAll['ChangeNum'] + 1
-                        else:
-                                CountyAll['EstNum'] = CountyAll['EstNum'] + 1
-			Counties.append(CountyAll)
-
+		#if county has not been encountered, create two new entries: one for the postmaster's year and one for all years
+		if pm["County"] not in CountyNames:
+			Counties.append(newCounty(pm, 1))
+			Counties.append(newCounty(pm, 0))
+			#add to set so that, on later iterations, we know the counties have already been seen
+			CountyNames.add(pm["County"])
+			CountyNameYears.add(nameyear(pm))
+		#if the county does not have an entry for the postmaster's year, create one
+		elif nameyear(pm) not in CountyNameYears:
+			#increment the total for the county
+			Counties = increment(Counties,pm)
+			Counties.append(newCounty(pm,1))
+			#add to set
+			CountyNameYears.add(nameyear(pm))
+		#if both entries exist, increment
 		else:
-			i = 0
-			for county in Counties:
-				if county['County'] == pm['County']:
-					if county['Year'] == pm['Year'] or county['Year'] == '-':
-						if int(pm['NewApp']) == 0:
-							county['ChangeNum'] = county['ChangeNum'] + 1
-						else:
-							county['EstNum'] = county['EstNum'] + 1
-						i = i + 1
-			if i < 2:
-				County = {}
-                		County['County'] = pm['County']
-                		County['Year'] = pm['Year']
-				County['EstNum'] = 0
-				County['ChangeNum'] = 0
-				if int(pm['NewApp']) == 0:
-					County['ChangeNum'] = County['ChangeNum'] + 1
-				else:
-					County['EstNum'] = County['EstNum'] + 1 
-                		Counties.append(County)
-	
-	fieldnames = Counties[0].keys()		
-	new_path = 'data/Geography/Countiesnew.csv'
-	f_obj2 = open(new_path, 'wb')
-	writer = csv.DictWriter(f_obj2, delimiter=',',fieldnames=fieldnames)
-	f = dict(zip(fieldnames,fieldnames))
-	writer.writerow(f)
-	for county in Counties:
-		writer.writerow(county)
-	f_obj2.close()
+			Counties = increment(Counties,pm)
+	writeCSV(Counties, "data/counties.csv")

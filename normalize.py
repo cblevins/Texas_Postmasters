@@ -32,7 +32,7 @@ if __name__ == "__main__":
 
 	for pm in PM:
 		ind = int(pm["Year"]) - 1867
-		if int(pm["Year"]) < 7:
+		if int(pm["Month"]) < 7:
 			ind = ind -1
 		pm["Weight"] = NumOffices[ind]
 
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 		i = i + 1
 
 	for pm in PM:
-		ind = int(pm["President"]) - 1
+		ind = int(pm["President"]) - 1;
 		w = 1.0/float(int(pm["Weight"]))
 		if pm["NewApp"] == "0":
 			Presidents[ind] = Presidents[ind] + w
@@ -61,7 +61,11 @@ if __name__ == "__main__":
 	print Presidents
 	print PresidentsEst
 
+	Inaug = [[4,3,1845], [5,3,1849], [10,7,1850], [4,3,1853], [4,3,1857], [4,3,1861], [4,3,1865], [15,4,1865], [4,3,1869], [4,3,1873], [5,3,1877], [4,3,1881], [20,9,1881], [4,3,1885], [4,3,1889], [4,3,1893], [4,3,1897], [4,3,1901], [14,9,1901], [4,3,1905], [4,3,1909], [4,3,1913], [5,3,1917], [4,3,1921], [3,8,1923], [4,3,1925], [4,3,1929], [4,3,1933], [20,1,1937], [20,1,1941]]
+
 	for i in range(len(Presidents)):
+		print Inaug[i],
+		print "	",
 		if PresidentsEst[i] == 0:
 			print 0
 			continue
