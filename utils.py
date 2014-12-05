@@ -1,6 +1,14 @@
 import csv
 import datetime
 
+		
+
+def getpoyear(po, field):
+	try:
+		return int(str.split(po[field], "/")[2])
+	except (ValueError, IndexError):
+		return -1
+
 #maps post office names to coordinates
 def locationMap():
 	POLocation = getLinesCSV("data/Texas_PostOffices_Coordinates.csv")
@@ -83,19 +91,14 @@ def check_date(pm,po):
                         return (-1*i)
         return 0
 
-#deletes postmaster entries with badly formatted dates
-def cleanPM(PM):
-	PMnew = []
-	for pm in PM:
-		for pm in PM:
-                	if pm["Year"] == "" or pm["Year"] == "0":
-                        	continue
-                	elif pm["Month"] == "" or pm["Month"] == "0":
-                        	continue
-                	elif pm["Day"] == "" or pm["Day"] == "0":
-                        	continue
-			PMnew.append(pm)
-	return PMnew
+#deletes csv entries with badly formatted values for a field
+#pass in values as a tuple e.g. [1834, 1900] if you field is "Year"
+def cleanCSV(Obj, field, values):
+	Objnew = []
+	for o in Obj:
+		if o[field] not in values:
+			Objnew.append(o)
+	return Objnew
 
 #prints a csv object to a file
 def writeCSV(Obj,s):

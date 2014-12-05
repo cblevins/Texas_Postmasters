@@ -1,73 +1,85 @@
 from utils import *
 
-def makeEMap(e):
+def makeMap(e):
 	m = {}
 	for r in e:
-		print r["Dem_Tot"],
-		print " ",
-		print r["Rep_Tot"]
+		#map county names to results 
 		m[r["NHGISNAM"]] = [int((r["Dem_Tot"]).replace(",","")),int((r["Rep_Tot"]).replace(",",""))]
 	return m
 
 def getElections():
-        e1864 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1864_Elections.txt")
-        e1868 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1868_Elections.txt")
-        e1872 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1872_Elections.txt")
-        e1876 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1876_Elections.txt")
-        e1880 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1880_Elections.txt")
-        e1884 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1884_Elections.txt")
-        e1888 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1888_Elections.txt")
-        e1892 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1892_Elections.txt")
-        e1896 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1896_Elections.txt")
-        e1900 = getLinesCSV("data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_1900_Elections.txt")
-
-	Elections = []
-	Elections.append(makeEMap(e1864))
-	Elections.append(makeEMap(e1868))
-	Elections.append(makeEMap(e1872))
-	Elections.append(makeEMap(e1876))
-	Elections.append(makeEMap(e1880))
-	Elections.append(makeEMap(e1884))
-	Elections.append(makeEMap(e1888))
-	Elections.append(makeEMap(e1892))
-	Elections.append(makeEMap(e1896))
-	Elections.append(makeEMap(e1900))
+	#create a map of years to a county-results map
+	Elections = {}
+	s_left = "data/Texas_Elections_1864-1900/Texas Election Results in CSV/TX_"
+	s_right = "_Elections.txt"
+	for year in range(1864, 1904, 4):
+		#opens the election file for each year and uses it to create a county to results file for that year
+		Elections[year] = makeMap(getLinesCSV(s_left + str(year) + s_right))
 	return Elections
 
-def inRange(PM,low,high):
-	PMnew = []
-	for pm in PM:
-		if (int(pm["Year"]) < low) or (int(pm["Year"]) > high):
-			continue
-		PMnew.append(pm)
-	return PMnew
-
-def getElectionYear(ind):
-	ElectionYears = [1864,1868,1872,1880,1884,1888,1892,1892,1900]
-	return ElectionYears[ind]
-
-def getLastElection(pm):
-	ElectionYears = [1864,1868,1872,1880,1884,1888,1892,1892,1900]
-	for ey in ElectionYears:
-		if int(pm["Year"]) > ey:
-			return ElectionYears.index(ey)
+def getLastElection(p):
+	for year in range(1864, 1904, 4):
+		if int(p["Year"]) <= year + 3:
+			return year
 	else:
-		return -1
+		return -1 
 
 def findElections(PM,Elections):
 	for pm in PM:
-		ind = getLastElection(pm)
-		pm["ElectionYear"] = getElectionYear(ind)
+		year = getLastElection(pm)
 		try:
-			[pm["Dem_Tot"],pm["Rep_Tot"]] = Elections[ind][pm["County"]]
+			[pm["Dem_Tot"],pm["Rep_Tot"]] = Elections[year][pm["County"]]
 		except KeyError:
 			[pm["Dem_Tot"],pm["Rep_Tot"]] = [-1,-1]
 	return PM
 
+
+#map of national election results: 0-rep, 1-dem
+def getNationalResults():
+        Results = {}
+        for year in range(1864, 1904, 4):
+                Results[year] = 0
+        Results[1884] = 1
+        Results[1892] = 1
+	return Results
+
+def findElectionsForCounties(Counties, Elections):
+	newCounties = []
+	Results = getNationalResults()
+	for county in Counties:
+		year = getLastElection(county)
+		try:
+			[county["Dem_Tot"], county["Rep_Tot"]] = Elections[year][county["Name"]]
+			if county["Dem_Tot"] == 99989990:
+				continue
+			if Results[year]==1:
+				county["dif"] = county["Dem_Tot"] - county["Rep_Tot"]
+			else:
+				county["dif"] = county["Rep_Tot"] - county["Dem_Tot"]
+			newCounties.append(county)
+		except KeyError:
+			continue
+	return newCounties
+
 print __name__
 if __name__ == "__main__":
+	set = True
 	Elections = getElections()
-	PM = getLinesCSV("data/newPostmastersmulti.csv")
-	PM = cleanPM(PM)
-	PM = inRange(PM,1864,1900)
-	PM = findElections(PM,Elections)
+	Counties = getLinesCSV("data/counties.csv")
+	#delete aggregrate county entries
+	Counties = cleanCSV(Counties, "Year", ["-", ""])
+	Counties = findElectionsForCounties(Counties, Elections)
+	print len(Counties)
+	Counties = cleanCSV(Counties, "Dem_Tot", [99989990])
+	Correlation = []
+	count = 0
+	for c in Counties:
+		Cor = {}
+		#dif is votes for national winner - votes for loser
+		bin = -1 if c["dif"] < 0 else 1
+		if bin == -1:
+			count = count + 1
+		[Cor["Ratio"],Cor["Dif"]] = [float(1 + int(c["ChangeNum"]))/(1 + int(c["EstNum"])), c["dif"] if set else bin]
+		Correlation.append(Cor)
+	writeCSV(Correlation, "data/correlation.csv")
+	print count
