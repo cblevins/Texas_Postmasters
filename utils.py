@@ -1,7 +1,93 @@
+import copy
 import csv
 import datetime
 
-		
+#splits post office entry into a list of easily manipulable post offices. The list has an EarliestName identifier
+def splitpo(po):
+	Dates = []
+	for i in range(1,9):
+		if po["Est" + str(i)] != "":
+			Dates.append(["Est" + str(i), po["Est" + str(i)]])
+	for i in range(1,9):
+		if po["Dis" + str(i)] != "":
+			Dates.append(["Dis" + str(i), po["Dis" + str(i)]])
+	for i in range(1,6):
+		if po["NameChangeDate" + str(i)] != "":
+			Dates.append(["NameChangeDate" + str(i), po["NameChangeDate" + str(i)]])
+
+	Dates = sorted(Dates, key = lambda date: date[1])
+
+	Names = []
+	Names.append([po["Est1"], po["EarliestName"]])
+	for d in Dates:
+		if "NameChangeDate" in d[0]:
+			Names.append([d[1], po["FormerName" + d[0][-1]]])
+
+	polist = []
+	polist.append(dict(("County"+str(i), po["County"+str(i)]) for i in range(1,4)))
+	for i in range(1,len(Dates)):
+		if "Dis" in Dates[i][0]:
+			continue
+		start = Dates[i][1]
+		if i == len(Dates) - 1:
+			end = ""
+		else:
+			end = Dates[i+1]
+		for n in Names:
+			if Dates[i][1] < n[0]:
+				name = n[1]
+				break
+		else:
+			name = ""
+		polist.append({"Name":name, "Start":start, "End":end})
+	return polist
+
+def splitPO(PO):
+	newPO = []
+	for po in PO:
+		newPO.append(splitpo(po))
+	return newPO
+
+#convert name fields to lists of ints
+def extractDates(po):
+	newpo = dict((k,v) for k,v in po.items())
+	for i in range(1,9):
+		if po["Est" + str(i)] == "":
+			newpo["Est" + str(i)] == ""
+			continue
+		try:
+			date = [int(str.split(po["Est" + str(i)],"/")[j]) for j in [2,1,0]]
+			newpo["Est" + str(i)] = datetime.date(date[0], date[1], date[2])
+		except (ValueError,IndexError):
+			raise ValueError("Bad date")
+        for i in range(1,9):
+                if po["Dis" + str(i)] == "":
+                        newpo["Dis" + str(i)] == ""
+                        continue
+                try:
+                        date = [int(str.split(po["Dis" + str(i)],"/")[j]) for j in [2,1,0]]
+			newpo["Dis" + str(i)] = datetime.date(date[0], date[1], date[2])
+                except (ValueError,IndexError):
+                        raise ValueError("Bad date")
+        for i in range(1,6):
+                if po["NameChangeDate" + str(i)] == "":
+                        newpo["NameChangeDate" + str(i)] == ""
+                        continue
+                try:
+                        date = [int(str.split(po["NameChangeDate" + str(i)],"/")[j]) for j in [2,1,0]]
+			newpo["NameChangeDate" + str(i)] = datetime.date(date[0], date[1], date[2])
+                except (ValueError,IndexError):
+                        raise ValueError("Bad date")
+	return newpo
+
+def changeDates(PO):
+	newPO = []
+	for po in PO:
+		try:
+			newPO.append(extractDates(po))
+		except ValueError:
+			continue
+	return newPO
 
 def getpoyear(po, field):
 	try:

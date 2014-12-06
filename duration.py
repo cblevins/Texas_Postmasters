@@ -15,13 +15,19 @@ print __name__
 if __name__ == "__main__":
 	PM = getLinesCSV("data/postmasters.csv")
 	PO = getLinesCSV("data/Texas_PostOffices.csv")
+	print "Entries before dates extracted: " + str(len(PO))
+	PO = changeDates(PO)
+	print "Entries after: " + str(len(PO))
+
+	PO = splitPO(PO)
+	print PO
 	M = officeNameMap(PO)
 	#add a list of post masters to each post office
 	for po in PO:
-		if po["FormerName1"] not in ["",po["EarliestName"]]:
+		if po["FormerName1"] == ["",po["EarliestName"]]:
 			print po
 		po["Postmasters"] = []
-		
+	
 	for pm in PM:
 		try:
 			ind = M[pm["Office"]]

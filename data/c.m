@@ -42,8 +42,6 @@ for i = 1:size(C(:,1))
     end
 end
 values = values ./ freq;
-
-xlim([-1.5, 1.5])
 plot(avg, values)
 
 

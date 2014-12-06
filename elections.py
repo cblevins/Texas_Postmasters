@@ -81,5 +81,5 @@ if __name__ == "__main__":
 			count = count + 1
 		[Cor["Ratio"],Cor["Dif"]] = [float(1 + int(c["ChangeNum"]))/(1 + int(c["EstNum"])), c["dif"] if set else bin]
 		Correlation.append(Cor)
-	writeCSV(Correlation, "data/correlation.csv")
+	writeCSV(Correlation, "data/correlation_old.csv")
 	print count
