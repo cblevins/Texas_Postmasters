@@ -10,15 +10,17 @@ def main():
 	print "Est in 1846: ", 
 	print num
 
+	num = 0
+
 	for po in PO:
 		if getpoyear(po, "Est1") == -1:
+			#print po["LatestName"]
 			continue
-		if getpoyear(po, "Est1") > 1867:
+		if getpoyear(po, "Est1") > 1875:
 			continue
-		if getpoyear(po, "Dis1") < 1867 and getpoyear(po, "Dis1") != -1:
+		if getpoyear(po, "Dis1") < 1875 and getpoyear(po, "Dis1") != -1:
 			continue
-		if getpoyear(po, "Dis1") == -1:
-			print po
+		#print po["LatestName"]
 		num = num + 1
 	print num
 

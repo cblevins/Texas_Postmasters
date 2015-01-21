@@ -2,43 +2,88 @@ import copy
 import csv
 import datetime
 
+def changeFormat(PM):
+        newPM = []
+        for pm in PM:
+                pmDate(pm)
+                if pm["Date"] != "":
+                        newPM.append(pm)
+        return newPM
+
+def pmDate(pm):
+	try:
+		pm["Date"] = datetime.date(int(pm["Year"]), int(pm["Month"]), int(pm["Day"]))
+	except ValueError:
+		pm["Date"] = ""
+#creates a multi-level map of the split post offices
+def splitMap(PO):
+	M = {}
+	for polist in PO:
+		for field,county in polist[0].iteritems():
+			if county not in M.keys():
+				M[county] = {}
+			for i in range(1, len(polist)):
+				try:
+					M[county][polist[i]["Name"]].append(polist[i])
+				except KeyError:
+					M[county][polist[i]["Name"]] = [polist[i]]
+	return M
+
+#returns list of field, date pairs extracted from a po entry
+def getDates(po):
+        Dates = []
+        for i in range(1,9):
+                if po["Est" + str(i)] != "":
+                        Dates.append(["Est" + str(i), po["Est" + str(i)]])
+        for i in range(1,9):
+                if po["Dis" + str(i)] != "":
+                        Dates.append(["Dis" + str(i), po["Dis" + str(i)]])
+        for i in range(1,6):
+                if po["NameChangeDate" + str(i)] != "":
+                        Dates.append(["NameChangeDate" + str(i), po["NameChangeDate" + str(i)]])
+
+        Dates = sorted(Dates, key = lambda date: date[1])
+	return Dates
+
+#returns date, name pair
+def getNames(po, Dates):
+        Names = []
+        for d in Dates:
+                if "NameChangeDate" in d[0]:
+                        Names.append([d[1], po["FormerName" + d[0][-1]]])
+	return Names
+
 #splits post office entry into a list of easily manipulable post offices. The list has an EarliestName identifier
 def splitpo(po):
-	Dates = []
-	for i in range(1,9):
-		if po["Est" + str(i)] != "":
-			Dates.append(["Est" + str(i), po["Est" + str(i)]])
-	for i in range(1,9):
-		if po["Dis" + str(i)] != "":
-			Dates.append(["Dis" + str(i), po["Dis" + str(i)]])
-	for i in range(1,6):
-		if po["NameChangeDate" + str(i)] != "":
-			Dates.append(["NameChangeDate" + str(i), po["NameChangeDate" + str(i)]])
+	Dates = getDates(po)
+	Names = getNames(po, Dates)
 
-	Dates = sorted(Dates, key = lambda date: date[1])
-
-	Names = []
-	Names.append([po["Est1"], po["EarliestName"]])
-	for d in Dates:
-		if "NameChangeDate" in d[0]:
-			Names.append([d[1], po["FormerName" + d[0][-1]]])
 
 	polist = []
+	#dict of counties
 	polist.append(dict(("County"+str(i), po["County"+str(i)]) for i in range(1,4)))
-	for i in range(1,len(Dates)):
+
+	#iterate through the dates
+	for i in range(len(Dates)):
+		#search for establishment or name changes
 		if "Dis" in Dates[i][0]:
 			continue
+
+		#get start and end dates
 		start = Dates[i][1]
 		if i == len(Dates) - 1:
 			end = ""
 		else:
-			end = Dates[i+1]
-		for n in Names:
-			if Dates[i][1] < n[0]:
-				name = n[1]
+			end = Dates[i+1][1]
+
+		#find name
+		for j in range(len(Names)):
+			if start < Names[j][0] and j != 0:
+				name = Names[j-1][1]
 				break
 		else:
-			name = ""
+			name = po["EarliestName"]
+
 		polist.append({"Name":name, "Start":start, "End":end})
 	return polist
 
@@ -56,7 +101,7 @@ def extractDates(po):
 			newpo["Est" + str(i)] == ""
 			continue
 		try:
-			date = [int(str.split(po["Est" + str(i)],"/")[j]) for j in [2,1,0]]
+			date = [int(str.split(po["Est" + str(i)],"/")[j]) for j in [2,0,1]]
 			newpo["Est" + str(i)] = datetime.date(date[0], date[1], date[2])
 		except (ValueError,IndexError):
 			raise ValueError("Bad date")
@@ -65,7 +110,7 @@ def extractDates(po):
                         newpo["Dis" + str(i)] == ""
                         continue
                 try:
-                        date = [int(str.split(po["Dis" + str(i)],"/")[j]) for j in [2,1,0]]
+                        date = [int(str.split(po["Dis" + str(i)],"/")[j]) for j in [2,0,1]]
 			newpo["Dis" + str(i)] = datetime.date(date[0], date[1], date[2])
                 except (ValueError,IndexError):
                         raise ValueError("Bad date")
@@ -74,7 +119,7 @@ def extractDates(po):
                         newpo["NameChangeDate" + str(i)] == ""
                         continue
                 try:
-                        date = [int(str.split(po["NameChangeDate" + str(i)],"/")[j]) for j in [2,1,0]]
+                        date = [int(str.split(po["NameChangeDate" + str(i)],"/")[j]) for j in [2,0,1]]
 			newpo["NameChangeDate" + str(i)] = datetime.date(date[0], date[1], date[2])
                 except (ValueError,IndexError):
                         raise ValueError("Bad date")
@@ -188,7 +233,7 @@ def cleanCSV(Obj, field, values):
 
 #prints a csv object to a file
 def writeCSV(Obj,s):
-	fieldnames = Obj[0].keys()
+	fieldnames = "LatestName	EarliestName	County1	County2	County3	Est1	Est2	Est3	Est4	Est5	Est6	Est7	Est8	Dis1	Dis2	Dis3	Dis4	Dis5	Dis6	Dis7	Dis8	NameChangeDate1	FormerName1	NameChangeDate2	FormerName2	NameChangeDate3	FormerName3	NameChangeDate4	FormerName4	NameChangeDate5	FormerName5".split()
 	f_obj = open(s,"wb")
 	writer = csv.DictWriter(f_obj, delimiter=',',fieldnames=fieldnames);
 	f = dict(zip(fieldnames,fieldnames))
@@ -197,10 +242,32 @@ def writeCSV(Obj,s):
 		writer.writerow(row)
 	f_obj.close()
 
+def writeCSVs(Obj, s, fieldnames):
+        f_obj = open(s,"wb")
+        writer = csv.DictWriter(f_obj, delimiter=',',fieldnames=fieldnames);
+        f = dict(zip(fieldnames,fieldnames))
+        writer.writerow(f)
+        for row in Obj:
+                writer.writerow(row)
+        f_obj.close()
+
 #returns a list containing the names and innauguration dates of presidents
 def getPresidents():
 	Inaug = [["Polk",[4,3,1845]], ["Taylor",[5,3,1849]], ["Fillmore",[10,7,1850]], ["Pierce",[4,3,1853]], ["Buchanan",[4,3,1857]], ["Lincoln1",[4,3,1861]], ["Lincoln2",[4,3,1865]], ["Johnson",[15,4,1865]], ["Grant1",[4,3,1869]], ["Grant2",[4,3,1873]], ["Hayes",[5,3,1877]], ["Garfield",[4,3,1881]], ["Arthur",[20,9,1881]], ["Cleveland1",[4,3,1885]], ["Harrison",[4,3,1889]], ["Cleveland2",[4,3,1893]], ["McKinley",[4,3,1897]], ["McKinley",[4,3,1901]], ["Roosevelt1",[14,9,1901]], ["Roosevelt2",[4,3,1905]], ["Taft",[4,3,1909]], ["Wilson1",[4,3,1913]], ["Wilson2",[5,3,1917]], ["Harding",[4,3,1921]], ["Coolidge",[3,8,1923]], ["Hoover",[4,3,1925]], ["F.D.Roosevelt1",[4,3,1929]], ["F.D.Roosevelt2",[4,3,1933]], ["F.D.Roosevelt3",[20,1,1937]], ["Truman",[20,1,1941]]]
 	return Inaug
+
+def getPresidentsDatetime():
+	Inaug = getPresidents()
+	for i in Inaug:
+		i[1] = datetime.date(i[1][2],i[1][1],i[1][0])
+	return Inaug
+
+def getPres(pm, Inaug):
+	for i in range(len(Inaug)):
+		if pm["Date"] < Inaug[i][1]:
+			return i - 1
+	else:
+		return -1
 
 #maps numbers to names
 def getPresidentsMap():
