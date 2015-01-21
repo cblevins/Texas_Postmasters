@@ -114,14 +114,23 @@ if __name__ == "__main__":
 		PresMap[i] = Inaug[i][0]
 	for pm in PM:
 		pres = getPres(pm, Inaug)
+		pm["AppointingPresidentIndex"] = pres + 1
+		pm["AppointingPresident"] = PresMap[pres]
+		od = pm["Date"]
+		pm["Date"] = pm["Duration"] + pm["Date"]
+		pres = getPres(pm, Inaug)
+		pm["DismissingPresidentIndex"] = pres + 1
+		pm["DismissingPresident"] = PresMap[pres]
+		pm["EndDate"] = pm["Date"]
+		pm["Date"] = od
 		pm["Duration"] = pm["Duration"].days
-		pm["PresidentIndex"] = pres + 1
-		pm["President"] = PresMap[pres]
 	fieldnames = "NewApp	Last	Office	Month	County	Year	Day	First".split()
 	fieldnames.append("Date")
+	fieldnames.append("EndDate")
 	fieldnames.append("Duration")
-	fieldnames.append("PresidentIndex")
-	fieldnames.append("President")
+	for s in ["Appointing", "Dismissing"]:
+		fieldnames.append(s + "President")
+		fieldnames.append(s + "PresidentIndex")
 	writeCSVs(PM, "data/PostmastersDuration.csv", fieldnames)
 			
 

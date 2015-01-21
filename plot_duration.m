@@ -23,8 +23,12 @@ function plot_duration (D, pres)
     for i = 1:30
         Vals(i,1)=i;
     end
-    %scatter(C(:,1), D(:, 2), 'b')
-    %hold on
+    
+    Medians = [517, 803, 595.5, 637, 482, 1118, 379, 515, 599, 619.5, 581, 669, 722, 807, 876.0, 1096, 993, 821, 799, 791, 929, 1348.5, 714.0, 905, 723, 418, 223, 0, 0, 0];
+    scatter(C(:,1), D(:, 2), 'b')
+    hold on
     scatter(Vals(:,1), M(:,1), 'r', 'filled')
+    hold on
+    scatter(Vals(:,1), Medians, 'g', 'filled')
     hold on
 end
