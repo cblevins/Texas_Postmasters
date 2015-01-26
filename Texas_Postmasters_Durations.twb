@@ -14,17 +14,16 @@
             <column datatype='string' name='Office' ordinal='2' />
             <column datatype='integer' name='Month' ordinal='3' />
             <column datatype='string' name='County' ordinal='4' />
-            <column datatype='string' name='State' ordinal='5' />
-            <column datatype='integer' name='Year' ordinal='6' />
-            <column datatype='integer' name='Day' ordinal='7' />
-            <column datatype='string' name='First' ordinal='8' />
-            <column datatype='date' name='Date' ordinal='9' />
-            <column datatype='date' name='EndDate' ordinal='10' />
-            <column datatype='integer' name='Duration' ordinal='11' />
-            <column datatype='string' name='AppointingPresident' ordinal='12' />
-            <column datatype='integer' name='AppointingPresidentIndex' ordinal='13' />
-            <column datatype='string' name='DismissingPresident' ordinal='14' />
-            <column datatype='integer' name='DismissingPresidentIndex' ordinal='15' />
+            <column datatype='integer' name='Year' ordinal='5' />
+            <column datatype='integer' name='Day' ordinal='6' />
+            <column datatype='string' name='First' ordinal='7' />
+            <column datatype='date' name='Date' ordinal='8' />
+            <column datatype='date' name='EndDate' ordinal='9' />
+            <column datatype='integer' name='Duration' ordinal='10' />
+            <column datatype='string' name='AppointingPresident' ordinal='11' />
+            <column datatype='integer' name='AppointingPresidentIndex' ordinal='12' />
+            <column datatype='string' name='DismissingPresident' ordinal='13' />
+            <column datatype='integer' name='DismissingPresidentIndex' ordinal='14' />
           </columns>
         </relation>
         <metadata-records>
@@ -122,33 +121,12 @@
             </attributes>
           </metadata-record>
           <metadata-record class='column'>
-            <remote-name>State</remote-name>
-            <remote-type>129</remote-type>
-            <local-name>[State]</local-name>
-            <parent-name>[PostmastersDuration#csv]</parent-name>
-            <remote-alias>State</remote-alias>
-            <ordinal>5</ordinal>
-            <local-type>string</local-type>
-            <aggregation>Count</aggregation>
-            <scale>1</scale>
-            <width>1073741823</width>
-            <contains-null>true</contains-null>
-            <collation flag='0' name='LEN_RUS' />
-            <attributes>
-              <attribute datatype='string' name='DebugRemoteCollation'>&quot;en_US&quot;</attribute>
-              <attribute datatype='string' name='DebugRemoteMetadata (compression)'>&quot;heap&quot;</attribute>
-              <attribute datatype='integer' name='DebugRemoteMetadata (size)'>4294967292</attribute>
-              <attribute datatype='integer' name='DebugRemoteMetadata (storagewidth)'>8</attribute>
-              <attribute datatype='string' name='DebugRemoteType'>&quot;str&quot;</attribute>
-            </attributes>
-          </metadata-record>
-          <metadata-record class='column'>
             <remote-name>Year</remote-name>
             <remote-type>20</remote-type>
             <local-name>[Year]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>Year</remote-alias>
-            <ordinal>6</ordinal>
+            <ordinal>5</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -163,7 +141,7 @@
             <local-name>[Day]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>Day</remote-alias>
-            <ordinal>7</ordinal>
+            <ordinal>6</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -178,7 +156,7 @@
             <local-name>[First]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>First</remote-alias>
-            <ordinal>8</ordinal>
+            <ordinal>7</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -199,7 +177,7 @@
             <local-name>[Date]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>Date</remote-alias>
-            <ordinal>9</ordinal>
+            <ordinal>8</ordinal>
             <local-type>date</local-type>
             <aggregation>Year</aggregation>
             <contains-null>true</contains-null>
@@ -214,7 +192,7 @@
             <local-name>[EndDate]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>EndDate</remote-alias>
-            <ordinal>10</ordinal>
+            <ordinal>9</ordinal>
             <local-type>date</local-type>
             <aggregation>Year</aggregation>
             <contains-null>true</contains-null>
@@ -229,7 +207,7 @@
             <local-name>[Duration]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>Duration</remote-alias>
-            <ordinal>11</ordinal>
+            <ordinal>10</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -244,7 +222,7 @@
             <local-name>[AppointingPresident]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>AppointingPresident</remote-alias>
-            <ordinal>12</ordinal>
+            <ordinal>11</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -265,7 +243,7 @@
             <local-name>[AppointingPresidentIndex]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>AppointingPresidentIndex</remote-alias>
-            <ordinal>13</ordinal>
+            <ordinal>12</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -280,7 +258,7 @@
             <local-name>[DismissingPresident]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>DismissingPresident</remote-alias>
-            <ordinal>14</ordinal>
+            <ordinal>13</ordinal>
             <local-type>string</local-type>
             <aggregation>Count</aggregation>
             <scale>1</scale>
@@ -301,7 +279,7 @@
             <local-name>[DismissingPresidentIndex]</local-name>
             <parent-name>[PostmastersDuration#csv]</parent-name>
             <remote-alias>DismissingPresidentIndex</remote-alias>
-            <ordinal>15</ordinal>
+            <ordinal>14</ordinal>
             <local-type>integer</local-type>
             <aggregation>Sum</aggregation>
             <contains-null>true</contains-null>
@@ -322,7 +300,6 @@
               <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
               <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
               <attribute datatype='string' name='locale'>&quot;en_US&quot;</attribute>
-              <attribute datatype='string' name='record-delimiter'>&quot;\\r&quot;</attribute>
               <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
             </attributes>
           </metadata-record>
@@ -351,10 +328,6 @@
       <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
         <calculation class='tableau' formula='1' />
       </column>
-      <column caption='President Index' datatype='integer' name='[PresidentIndex]' role='measure' type='quantitative'>
-      </column>
-      <column datatype='string' name='[State]' role='dimension' semantic-role='[State].[Name]' type='nominal'>
-      </column>
       <column datatype='integer' name='[Year]' role='dimension' type='quantitative'>
       </column>
       <column-instance column='[AppointingPresident]' derivation='None' name='[none:AppointingPresident:nk]' pivot='key' type='nominal' />
@@ -362,6 +335,86 @@
       <layout dim-ordering='alphabetic' dim-percentage='0.5' measure-ordering='alphabetic' measure-percentage='0.4' show-structure='true' />
       <style>
         <style-rule element='mark'>
+          <encoding attr='color' field='[none:AppointingPresident:nk]' type='palette'>
+            <map to='#17becf'>
+              <bucket>&quot;Pierce&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;Arthur&quot;</bucket>
+            </map>
+            <map to='#1f77b4'>
+              <bucket>&quot;Roosevelt1&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Coolidge&quot;</bucket>
+            </map>
+            <map to='#2ca02c'>
+              <bucket>&quot;Wilson1&quot;</bucket>
+            </map>
+            <map to='#7f7f7f'>
+              <bucket>&quot;Johnson&quot;</bucket>
+            </map>
+            <map to='#8c564b'>
+              <bucket>&quot;Harding&quot;</bucket>
+            </map>
+            <map to='#9467bd'>
+              <bucket>&quot;Grant1&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;F.D.Roosevelt1&quot;</bucket>
+            </map>
+            <map to='#98df8a'>
+              <bucket>&quot;Wilson2&quot;</bucket>
+            </map>
+            <map to='#9edae5'>
+              <bucket>&quot;Polk&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;Buchanan&quot;</bucket>
+            </map>
+            <map to='#aec7e8'>
+              <bucket>&quot;Roosevelt2&quot;</bucket>
+            </map>
+            <map to='#bcbd22'>
+              <bucket>&quot;Lincoln2&quot;</bucket>
+            </map>
+            <map to='#c49c94'>
+              <bucket>&quot;Harrison&quot;</bucket>
+            </map>
+            <map to='#c5b0d5'>
+              <bucket>&quot;Grant2&quot;</bucket>
+            </map>
+            <map to='#c7c7c7'>
+              <bucket>&quot;Lincoln1&quot;</bucket>
+            </map>
+            <map to='#d62728'>
+              <bucket>&quot;Fillmore&quot;</bucket>
+            </map>
+            <map to='#dbdb8d'>
+              <bucket>&quot;McKinley&quot;</bucket>
+            </map>
+            <map to='#e377c2'>
+              <bucket>&quot;Hayes&quot;</bucket>
+            </map>
+            <map to='#f7b6d2'>
+              <bucket>&quot;Hoover&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Cleveland1&quot;</bucket>
+            </map>
+            <map to='#ff7f0e'>
+              <bucket>&quot;Taft&quot;</bucket>
+            </map>
+            <map to='#ff9896'>
+              <bucket>&quot;Garfield&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;Cleveland2&quot;</bucket>
+            </map>
+            <map to='#ffbb78'>
+              <bucket>&quot;Taylor&quot;</bucket>
+            </map>
+          </encoding>
           <encoding attr='color' field='[none:DismissingPresident:nk]' type='palette'>
             <map to='#17becf'>
               <bucket>&quot;Pierce&quot;</bucket>
@@ -416,86 +469,6 @@
             </map>
             <map to='#d62728'>
               <bucket>&quot;F.D.Roosevelt2&quot;</bucket>
-            </map>
-            <map to='#d62728'>
-              <bucket>&quot;Fillmore&quot;</bucket>
-            </map>
-            <map to='#dbdb8d'>
-              <bucket>&quot;McKinley&quot;</bucket>
-            </map>
-            <map to='#e377c2'>
-              <bucket>&quot;Hayes&quot;</bucket>
-            </map>
-            <map to='#f7b6d2'>
-              <bucket>&quot;Hoover&quot;</bucket>
-            </map>
-            <map to='#ff7f0e'>
-              <bucket>&quot;Cleveland1&quot;</bucket>
-            </map>
-            <map to='#ff7f0e'>
-              <bucket>&quot;Taft&quot;</bucket>
-            </map>
-            <map to='#ff9896'>
-              <bucket>&quot;Garfield&quot;</bucket>
-            </map>
-            <map to='#ffbb78'>
-              <bucket>&quot;Cleveland2&quot;</bucket>
-            </map>
-            <map to='#ffbb78'>
-              <bucket>&quot;Taylor&quot;</bucket>
-            </map>
-          </encoding>
-          <encoding attr='color' field='[none:AppointingPresident:nk]' type='palette'>
-            <map to='#17becf'>
-              <bucket>&quot;Pierce&quot;</bucket>
-            </map>
-            <map to='#1f77b4'>
-              <bucket>&quot;Arthur&quot;</bucket>
-            </map>
-            <map to='#1f77b4'>
-              <bucket>&quot;Roosevelt1&quot;</bucket>
-            </map>
-            <map to='#2ca02c'>
-              <bucket>&quot;Coolidge&quot;</bucket>
-            </map>
-            <map to='#2ca02c'>
-              <bucket>&quot;Wilson1&quot;</bucket>
-            </map>
-            <map to='#7f7f7f'>
-              <bucket>&quot;Johnson&quot;</bucket>
-            </map>
-            <map to='#8c564b'>
-              <bucket>&quot;Harding&quot;</bucket>
-            </map>
-            <map to='#9467bd'>
-              <bucket>&quot;Grant1&quot;</bucket>
-            </map>
-            <map to='#98df8a'>
-              <bucket>&quot;F.D.Roosevelt1&quot;</bucket>
-            </map>
-            <map to='#98df8a'>
-              <bucket>&quot;Wilson2&quot;</bucket>
-            </map>
-            <map to='#9edae5'>
-              <bucket>&quot;Polk&quot;</bucket>
-            </map>
-            <map to='#aec7e8'>
-              <bucket>&quot;Buchanan&quot;</bucket>
-            </map>
-            <map to='#aec7e8'>
-              <bucket>&quot;Roosevelt2&quot;</bucket>
-            </map>
-            <map to='#bcbd22'>
-              <bucket>&quot;Lincoln2&quot;</bucket>
-            </map>
-            <map to='#c49c94'>
-              <bucket>&quot;Harrison&quot;</bucket>
-            </map>
-            <map to='#c5b0d5'>
-              <bucket>&quot;Grant2&quot;</bucket>
-            </map>
-            <map to='#c7c7c7'>
-              <bucket>&quot;Lincoln1&quot;</bucket>
             </map>
             <map to='#d62728'>
               <bucket>&quot;Fillmore&quot;</bucket>
@@ -675,13 +648,10 @@
             <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
               <calculation class='tableau' formula='1' />
             </column>
-            <column datatype='string' name='[State]' role='dimension' semantic-role='[State].[Name]' type='nominal'>
-            </column>
             <column-instance column='[Calculation_6250121135957159]' derivation='Median' name='[med:Calculation_6250121135957159:qk]' pivot='key' type='quantitative' />
             <column-instance column='[County]' derivation='None' name='[none:County:nk]' pivot='key' type='nominal' />
             <column-instance column='[DismissingPresident]' derivation='None' name='[none:DismissingPresident:nk]' pivot='key' type='nominal' />
             <column-instance column='[EndDate]' derivation='None' name='[none:EndDate:qk]' pivot='key' type='quantitative' />
-            <column-instance column='[State]' derivation='None' name='[none:State:nk]' pivot='key' type='nominal' />
             <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
           </datasource-dependencies>
           <filter class='categorical' column='[textscan.42025.581421990700].[none:DismissingPresident:nk]'>
@@ -749,7 +719,6 @@
             <encodings>
               <color column='[textscan.42025.581421990700].[med:Calculation_6250121135957159:qk]' />
               <lod column='[textscan.42025.581421990700].[none:County:nk]' />
-              <lod column='[textscan.42025.581421990700].[none:State:nk]' />
               <lod column='[textscan.42025.581421990700].[none:DismissingPresident:nk]' />
               <lod column='[textscan.42025.581421990700].[sum:Number of Records:qk]' />
               <geometry column='[textscan.42025.581421990700].[Geometry (generated)]' />
@@ -771,6 +740,87 @@
         </panes>
         <rows>[textscan.42025.581421990700].[Latitude (generated)]</rows>
         <cols>[textscan.42025.581421990700].[Longitude (generated)]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 5'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='PostmastersDuration' name='textscan.42025.581421990700' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42025.581421990700'>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='integer' name='[Number of Records]' role='measure' type='quantitative' user:auto-column='numrec'>
+              <calculation class='tableau' formula='1' />
+            </column>
+            <column-instance column='[Date]' derivation='None' name='[none:Date:qk]' pivot='key' type='quantitative' />
+            <column-instance column='[Number of Records]' derivation='Sum' name='[sum:Number of Records:qk]' pivot='key' type='quantitative' />
+          </datasource-dependencies>
+          <filter class='quantitative' column='[textscan.42025.581421990700].[none:Date:qk]' included-values='in-range-or-null'>
+            <min>#1875-01-01#</min>
+            <max>#1902-01-01#</max>
+          </filter>
+          <slices>
+            <column>[textscan.42025.581421990700].[none:Date:qk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows></rows>
+        <cols>[textscan.42025.581421990700].[sum:Number of Records:qk]</cols>
+      </table>
+    </worksheet>
+    <worksheet name='Sheet 6'>
+      <table>
+        <view>
+          <datasources>
+            <datasource caption='PostmastersDuration' name='textscan.42025.581421990700' />
+          </datasources>
+          <datasource-dependencies datasource='textscan.42025.581421990700'>
+            <column datatype='string' name='[County]' role='dimension' semantic-role='[County].[Name]' type='nominal'>
+              <semantic-values semantic-role='[County].[Name]'>
+                <semantic-value key='&quot;Greer&quot;' value='&quot;Greer&quot;' />
+                <semantic-value key='&quot;Zavalla&quot;' value='&quot;Zavala&quot;' />
+              </semantic-values>
+            </column>
+            <column datatype='date' name='[Date]' role='dimension' type='ordinal'>
+            </column>
+            <column datatype='string' name='[Office]' role='dimension' type='nominal'>
+            </column>
+            <column-instance column='[County]' derivation='None' name='[none:County:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Office]' derivation='None' name='[none:Office:nk]' pivot='key' type='nominal' />
+            <column-instance column='[Date]' derivation='Year' name='[yr:Date:ok]' pivot='key' type='ordinal' />
+          </datasource-dependencies>
+          <filter class='categorical' column='[textscan.42025.581421990700].[none:Office:nk]'>
+            <groupfilter function='member' level='[none:Office:nk]' member='&quot;BRACKETTVILLE&quot;' user:ui-domain='database' user:ui-enumeration='inclusive' user:ui-marker='enumerate' />
+          </filter>
+          <slices>
+            <column>[textscan.42025.581421990700].[none:Office:nk]</column>
+          </slices>
+          <aggregation value='true' />
+        </view>
+        <style>
+        </style>
+        <panes>
+          <pane>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows>[textscan.42025.581421990700].[none:County:nk]</rows>
+        <cols>[textscan.42025.581421990700].[yr:Date:ok]</cols>
       </table>
     </worksheet>
   </worksheets>
@@ -846,7 +896,6 @@
             <card type='pages' />
             <card type='filters' />
             <card type='marks' />
-            <card pane-specification-id='0' param='[textscan.42025.581421990700].[med:Calculation_6250121135957159:qk]' type='color' />
           </strip>
         </edge>
         <edge name='top'>
@@ -866,6 +915,56 @@
           <field>[textscan.42025.581421990700].[none:DismissingPresident:nk]</field>
           <field>[textscan.42025.581421990700].[none:EndDate:qk]</field>
           <field>[textscan.42025.581421990700].[none:State:nk]</field>
+          <field>[textscan.42025.581421990700].[yr:Date:ok]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Sheet 5'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42025.581421990700].[none:Date:qk]</field>
+        </color-one-way>
+      </highlight>
+    </window>
+    <window auto-hidden='0' class='worksheet' maximized='0' name='Sheet 6'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='31'>
+            <card type='columns' />
+          </strip>
+          <strip size='31'>
+            <card type='rows' />
+          </strip>
+        </edge>
+      </cards>
+      <highlight>
+        <color-one-way>
+          <field>[textscan.42025.581421990700].[none:County:nk]</field>
+          <field>[textscan.42025.581421990700].[none:Office:nk]</field>
           <field>[textscan.42025.581421990700].[yr:Date:ok]</field>
         </color-one-way>
       </highlight>
@@ -1810,6 +1909,67 @@
       nEFHenCn00E6nZ5S544zH4PhEJPJBOVSCfJhYj5JR0WW0e50kM1koelB4JhlWRiPTQyGA6yt
       rqK5v49KuTx3/jUhCenzhIx37tzBhQsXwvFSsBrNTZxqCxzlQpMNxXp7qDAXEctoNAo3mead
       L+ozu7FVq9Uicf6+L4444FWtRKNWCjZsRSXzRfD/AaTezvXBi71MAAAAAElFTkSuQmCC
+    </thumbnail>
+    <thumbnail height='62' name='Sheet 5' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAAA+CAYAAAB9RBRuAAAACXBIWXMAAA7DAAAOwwHHb6hk
+      AAADnUlEQVR4nO3dQWiTdxjH8W9GxHSZFCnoZaPCJgQUQcYmKgyHg25sCBUbKSi1brIUWnBR
+      tlgZw8BqZ3uoIKxjo0UFg0PmGEqoIOpgDpGaQ3N4wRUW0EEPEXJITDUQD01sV7eyU95/9/w+
+      t+R9oc+/eb9537ZvaKBarVYRMeolvwcQ8ZMCENMUgJimAMQ0BSCmKQAxTQGIaUG/B2gUz/P8
+      HkEcZCYAgEgk4vcI4hhdAolpps4A6xJX/R5BHKMzgJimAMQ0BSCmKQAxTQGIaQpATFMAYpoC
+      ENMUgJimAMQ0BSCmKQAxTQGIaabuBv1z8EO/RxDH6Awgppk6A+hjkbKYqQD+Dx+J9Dxv2a/D
+      pTXoEkhMUwBimgIQ0xSAmBbQP8gQy3QGENMUgJimAMQ0kwEUvDSxjg6i0Shdg5fIA5SzxDti
+      ZIrz+2VTSaLRKL94BZ8mLZNOdvFDpvb1nZzx303/epau2ve5IzZCZqbs3BrsBVDJcfrLMdbF
+      Bjk3PsTbkxc5npq7RaK0YLfM2TjJy1n2Jb9nV6S58WMWc6T69zOefUx4xfwf7F2acUn53zl2
+      5irv95/hwrlvORj5jYHTNyjj1hrMBVD0bjLFdrp3vk4o3MqB/jbyP92h/t7TtHLuRRm4UuLT
+      oXHfDqyp1ElurWnj1WqVJ1T+ts2VGZdSqQRpb/+M9s1rCYZaePe9Nrj/kNnadlfWYOpeIKC2
+      4tW8Un/ctOL50y/zmJ+H49y794D1e0+yszXsz4zA5gOjjAYrpDITLLhacGrGpQTXvkVnZ+1B
+      eZqRExO07P6KZtxag7kzwJyni95T54QoMTm5hu592/jjx2Okc+WGT/ZcEGCWJ4uedmrG/6KQ
+      Jbk/weT6vXzTuRFwaw32AqgAzM4HUHlKPYhHQN9ogg929dK7rcrY0VNMO3Z8LYcZ64rT1+n6
+      5AR/tcU5P7CH+kWOS2swF0D4jS28xk0u350BCqTHJmDHhtqL08KqEECQd3qHeZMpEqfSuHV8
+      LYcZgUKGI4lRSttjfN25iWJ+hpl8/WLOnTWYC4BQhC8+/4hrQ31Eo4e4WNrB8MdbX9wv2Mrh
+      4YMEsuOMXM81fs6acNMSGx2Z8Z/kbk/wKBAgcPs7erq76enpozd+iRd+0enzGuzeC1QpUpiF
+      5rCbP0RKY9gNQASLl0AiCygAMU0BiGkKQExTAGKaAhDTFICYpgDENAUgpikAMU0BiGkKQExT
+      AGKaAhDTFICY9gxKpVv0G7uKZAAAAABJRU5ErkJggg==
+    </thumbnail>
+    <thumbnail height='64' name='Sheet 6' width='192'>
+      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
     </thumbnail>
   </thumbnails>
 </workbook>
