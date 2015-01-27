@@ -124,6 +124,12 @@ if __name__ == "__main__":
 		pm["EndDate"] = pm["Date"]
 		pm["Date"] = od
 		pm["Duration"] = pm["Duration"].days
+
+	Years = []
+	for pm in PM:
+		Years.append({"Year" : (pm["Date"] - Inaug[pm["AppointingPresidentIndex"] - 1][1]).days / 365, "Duration" : pm["Duration"]})
+	writeCSVs(Years, "fyd.csv", ["Year", "Duration"])
+
 	fieldnames = "NewApp	Last	Office	Month	County	Year	Day	First".split()
 	fieldnames.append("Date")
 	fieldnames.append("EndDate")
