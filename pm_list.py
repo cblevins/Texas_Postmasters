@@ -34,7 +34,7 @@ def getDurations():
 			pml[i]["Duration"] = pml[i+1]["Date"]-pml[i]["Date"]
 		pml[len(pml)-1]["Duration"] = datetime.timedelta(10000000)
 
-	PO = getLinesCSV("testing.csv")
+	PO = getLinesCSV("Data/MergedPostOffices.csv")
 	PO = changeDates(PO)
 	print "Number of post offices from PO: ",
 	print len(PO)
@@ -81,6 +81,7 @@ def count_problems (required_county, PM):
 		if pm["County"] == required_county and pm["Date"] < date:
 			if pm["Duration"] == datetime.timedelta(10000000):
 				problems = problems + 1
+			elif pm["Duration"] == datetime.timedelta(0):
 				print pm
 			else:
 				num = num + 1
@@ -95,24 +96,28 @@ def count_problems (required_county, PM):
 	print num
 	return problems
 
+def tostr(d):
+	return str(d.month) + "/" + str(d.day) + "/" + str(d.year)
+
 print __name__
 if __name__ == "__main__":
 	PM = getDurations ()
 	newPM = []
-	Col = []
-	startdate = datetime.date(1845, 1, 1)
-	for pm in PM:
-		if pm["Duration"] == datetime.timedelta(10000000):
-                        continue
-		newPM.append(pm)
-		Col.append({"Time" : (pm["Date"] - startdate).days, "Duration" : pm["Duration"].days})
-	PM = newPM
-	writeCSVs(Col, "col.csv", ["Time", "Duration"])
 	Inaug = getPresidentsDatetime ()
 	PresMap = {}
 	for i in range(len(Inaug)):
 		PresMap[i] = Inaug[i][0]
 	for pm in PM:
+		if pm["Duration"] == datetime.timedelta(10000000):
+			pm["Duration"] = "na"
+			pres = getPres(pm, Inaug)
+			pm["AppointingPresidentIndex"] = pres + 1
+			pm["AppointingPresident"] = PresMap[pres]
+			pm["DismissingPresidentIndex"] = "na"
+			pm["DismissingPresident"] = "na"
+			pm["EndDate"] = "na"
+			pm["Date"] = tostr(pm["Date"])
+			continue
 		pres = getPres(pm, Inaug)
 		pm["AppointingPresidentIndex"] = pres + 1
 		pm["AppointingPresident"] = PresMap[pres]
@@ -121,14 +126,9 @@ if __name__ == "__main__":
 		pres = getPres(pm, Inaug)
 		pm["DismissingPresidentIndex"] = pres + 1
 		pm["DismissingPresident"] = PresMap[pres]
-		pm["EndDate"] = pm["Date"]
-		pm["Date"] = od
+		pm["EndDate"] = tostr(pm["Date"])
+		pm["Date"] = tostr(od)
 		pm["Duration"] = pm["Duration"].days
-
-	Years = []
-	for pm in PM:
-		Years.append({"Year" : (pm["Date"] - Inaug[pm["AppointingPresidentIndex"] - 1][1]).days / 365, "Duration" : pm["Duration"]})
-	writeCSVs(Years, "fyd.csv", ["Year", "Duration"])
 
 	fieldnames = "NewApp	Last	Office	Month	County	Year	Day	First".split()
 	fieldnames.append("Date")

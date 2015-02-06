@@ -241,7 +241,6 @@ def writeCSV(Obj,s):
 	for row in Obj:
 		writer.writerow(row)
 	f_obj.close()
-
 def writeCSVs(Obj, s, fieldnames):
         f_obj = open(s,"wb")
         writer = csv.DictWriter(f_obj, delimiter=',',fieldnames=fieldnames);
@@ -250,6 +249,13 @@ def writeCSVs(Obj, s, fieldnames):
         for row in Obj:
                 writer.writerow(row)
         f_obj.close()
+
+def tokenizet(s, t):
+        try:
+                d = [int(s.split(t)[i]) for i in [0,1,2]]
+                return datetime.date(d[0], d[1], d[2])
+        except (ValueError, IndexError):
+                return "na"
 
 #returns a list containing the names and innauguration dates of presidents
 def getPresidents():
@@ -261,6 +267,13 @@ def getPresidentsDatetime():
 	for i in Inaug:
 		i[1] = datetime.date(i[1][2],i[1][1],i[1][0])
 	return Inaug
+
+def getPresf(pm, Inaug, f):
+        for i in range(len(Inaug)):
+                if pm[f] < Inaug[i][1]:
+                        return i - 1
+        else:
+                return -1
 
 def getPres(pm, Inaug):
 	for i in range(len(Inaug)):
@@ -276,6 +289,14 @@ def getPresidentsMap():
 	for i in range(len(Inaug)):
 		M[i] = Inaug[i][0]
 	return M
+
+def getPG():
+	Inaug = getLinesCSV("data/PostmasterGenerals_dates.csv")
+	nInaug = []
+	for ina in Inaug:
+		nInaug.append([ina["Name"], tokenizet(ina["Date"], "-")])
+	print nInaug
+	return nInaug
 
 #cycles through presidents and returns the index of the president under whom a postmaster appointment was made
 #appointments made under Truman are considered invalid (returns -1)
