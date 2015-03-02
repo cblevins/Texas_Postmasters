@@ -26,7 +26,6 @@ if __name__ == "__main__":
 			EMap[election["county_name"]] = [election]
 	for county in EMap.keys():
 		EMap[county] = sorted(EMap[county], key=lambda election: election["date"])
-	print EMap["anderson"]
 	for pm in PM:
 		try:
 			EBlock = EMap[pm["County"].lower()]
@@ -54,6 +53,15 @@ if __name__ == "__main__":
 					pm["DisCongressionalElection"] = EBlock[i]["cong_county_share"]
 					pm["DisPresidentialElection"] = EBlock[i]["pres_county_share"]
 					break
+		if pm["EndDate"] == "na" or pm["EndDate"] <= datetime.date(1876, 11, 7) or pm["EndDate"] > datetime.date(1898, 11, 8):
+			pm["LastCongressionalElection"] = "na"
+			pm["LastPresidentialElection"] = "na"
+		else:
+			for i in range(1, len(EBlock)):
+				if pm["EndDate"] < EBlock[i]["date"]:
+					pm["LastCongressionalElection"] = EBlock[i-1]["cong_county_share"]
+					pm["LastPresidentialElection"] = EBlock[i-1]["pres_county_share"]
+					break
 
 	fieldnames = "EndType NewApp	Last	Office	Month	County	Year	Day	First".split()
 	fieldnames.append("Date")
@@ -64,7 +72,7 @@ if __name__ == "__main__":
 		fieldnames.append(s + "PresidentIndex")
 		fieldnames.append(s + "PG")
 		fieldnames.append(s + "PGIndex")
-	for s in ["App", "Dis"]:
+	for s in ["App", "Dis", "Last"]:
 		fieldnames.append(s + "CongressionalElection")
 		fieldnames.append(s + "PresidentialElection")
 	writeCSVs(PM, "data/PostmastersElections.csv", fieldnames)
